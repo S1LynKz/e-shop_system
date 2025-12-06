@@ -12,32 +12,34 @@ class InventoryService():
     def add_product(self, product: Product):
         """Adds a product to product list and writes it inventory.json"""
         try:
-            if not isinstance(product, Product):
-                raise ValueError('Product must be of type product')
             self.product_list.append(product)
             self.inventory_manager.write([{**product.to_dict(), 'type': product.__class__.__name__} for product in self.product_list])
         except ValueError as e:
             print(f'Error: {e}')
 
-    def delete_product(self, product: Product):
+    def delete_product(self, product: str):
         """Removes a product from product list and writes new list to inventory.json"""
         try:
-            if not isinstance(product, Product):
-                raise ValueError('Product must be of type product')
-            self.product_list.remove(product)
-            self.inventory_manager.write([product.to_dict() for product in self.product_list])
+            if not isinstance(product, str):
+                raise ValueError('Product must be a string of the name')
+            for product in self.product_list:
+                if product.name == product:
+                    self.product_list.remove(product)
+                    self.inventory_manager.write([product.to_dict() for product in self.product_list])
+                    return
+            raise ValueError('Invalid name')
         except ValueError as e:
             print(f'Error: {e}')
 
-    def change_stock(self, product: Product, stock_change: int):
+    def change_stock(self, product: str, stock_change: int):
         """Changes stock number of product and writes new list to inventory.json"""
         try:
-            if not isinstance(product, Product):
+            if not isinstance(product, str):
                 raise ValueError('Product must be of type product')
             if not isinstance(stock_change, int):
                 raise ValueError('Stock change amount must be a positive or negative integer')
             for item in self.product_list:
-                if product.name == item.name:
+                if product == item.name:
                     item.stock_quantity += stock_change
             self.inventory_manager.write([product.to_dict() for product in self.product_list])
         except ValueError as e:

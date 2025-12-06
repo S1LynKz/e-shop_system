@@ -24,7 +24,7 @@ class AuthService():
 
     def logout(self):
         """Returns user to login screen"""
-        pass
+        return False
 
     def register(self, user_type: str):
         """Registers a new user and adds to user list and user_log.json"""

@@ -69,7 +69,3 @@ class Cart():
     def view_cart(self):
         """Returns cart list"""
         print(self.cart_list)
-
-    def finalize_cart(self):
-        """Saves cart as an order"""
-        # Think about if this should go here

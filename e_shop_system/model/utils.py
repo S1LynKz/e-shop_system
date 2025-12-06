@@ -8,8 +8,7 @@ class FileManager():
 
     def read(self) -> List:
         if not os.path.exists(f'final_project/data/{self.filename}'):
-            FileManager.clear(self)
-            raise FileNotFoundError('File doesn\'t exist')
+            return []
         with open(f'final_project/data/{self.filename}', 'r') as file:
             return json.load(file)
 
