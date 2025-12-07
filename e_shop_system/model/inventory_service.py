@@ -19,11 +19,11 @@ class InventoryService():
         """Adds a product to product list and writes it inventory.json"""
         try:
             self.product_list = []
-            for product in self.json_list:
-                if product['type'] == 'Electronics':
-                    self.product_list.append(Electronics.from_dict(product))
-                elif product['type'] == 'Clothing':
-                    self.product_list.append(Clothing.from_dict(product))
+            for item in self.json_list:
+                if item['type'] == 'Electronics':
+                    self.product_list.append(Electronics.from_dict(item))
+                elif item['type'] == 'Clothing':
+                    self.product_list.append(Clothing.from_dict(item))
             self.product_list.append(product)
             self.inventory_manager.write([{**p.to_dict(), 'type': p.__class__.__name__} for p in self.product_list])
             self.json_list = self.inventory_manager.read()
@@ -34,11 +34,11 @@ class InventoryService():
         """Removes a product from product list and writes new list to inventory.json"""
         try:
             self.product_list = []
-            for product in self.json_list:
-                if product['type'] == 'Electronics':
-                    self.product_list.append(Electronics.from_dict(product))
-                elif product['type'] == 'Clothing':
-                    self.product_list.append(Clothing.from_dict(product))
+            for item in self.json_list:
+                if item['type'] == 'Electronics':
+                    self.product_list.append(Electronics.from_dict(item))
+                elif item['type'] == 'Clothing':
+                    self.product_list.append(Clothing.from_dict(item))
             if not isinstance(product, str):
                 raise ValueError('Product must be a string of the name')
             for product_match in self.product_list:
@@ -55,11 +55,11 @@ class InventoryService():
         """Changes stock number of product and writes new list to inventory.json"""
         try:
             self.product_list = []
-            for product in self.json_list:
-                if product['type'] == 'Electronics':
-                    self.product_list.append(Electronics.from_dict(product))
-                elif product['type'] == 'Clothing':
-                    self.product_list.append(Clothing.from_dict(product))
+            for item in self.json_list:
+                if item['type'] == 'Electronics':
+                    self.product_list.append(Electronics.from_dict(item))
+                elif item['type'] == 'Clothing':
+                    self.product_list.append(Clothing.from_dict(item))
             if not isinstance(product, str):
                 raise ValueError('Product must be of type product')
             if not isinstance(stock_change, int):
