@@ -1,6 +1,6 @@
 import json
 import os
-from typing import List, Dict, Type, Optional
+from typing import List, Dict
 
 class FileManager():
     def __init__(self, filename: str):

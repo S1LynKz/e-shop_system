@@ -1,5 +1,5 @@
-from model.utils import FileManager
+from model.interface import Interface
 
 if __name__ == '__main__':
-    file1  = FileManager('inventory.json')
-    file1.write([{'test': 'this'}])
+    interface = Interface()
+    interface.input_login()
