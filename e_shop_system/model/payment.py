@@ -3,7 +3,10 @@ class Payment():
     def validate_payment(input: str):
         if input == 'card':
             print('Credit card payment went though')
+            return True
         elif input == 'paypal':
             print('Paypal payment went through')
-        print('Payment failed: must enter either \"card\" or \"paypal\"')
-        return False
+            return True
+        else:
+            print('Payment failed: must enter either \"card\" or \"paypal\"')
+            return False

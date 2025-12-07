@@ -1,5 +1,5 @@
-from product import Product
-from validator import Validator
+from model.product import Product
+from model.validator import Validator
 
 class Electronics(Product):
     """Subclass of product"""

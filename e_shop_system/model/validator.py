@@ -1,20 +1,20 @@
 class Validator:
     @staticmethod
-    def validate_string(value, field_name):
+    def validate_string(value):
         if not isinstance(value, str) or not value:
-            raise ValueError(f'{field_name} must be a non_empty string. Got: {value}')
+            raise ValueError(f'Must be a non_empty string. Got: {value}')
         return value
     
     @staticmethod
-    def validate_positive_number(value, field_name):
-        if not isinstance(value, (int, float)) or value <= 0:
-            raise ValueError(f'{field_name} must be a positive integer or float. Got: {value}')
+    def validate_positive_number(value):
+        if not isinstance(value, (int, float)) or value < 0:
+            raise ValueError(f'Must be a positive integer or float. Got: {value}')
         return value
     
     @staticmethod
     def validate_user_id(user_id):
-        if not isinstance(user_id, str) or not user_id or not user_id.isalnum():
-            raise ValueError('User ID must be an alphanumeric string')
+        if not isinstance(user_id, int) or user_id < 0:
+            raise ValueError('User ID must be a positive integer')
         return user_id
     
     @staticmethod

@@ -1,7 +1,7 @@
-from utils import FileManager
+from model.utils import FileManager
 from model.validator import Validator
-from customer import Customer
-from e_shop_system.model.admin import Admin
+from model.customer import Customer
+from model.admin import Admin
 
 class AuthService():
     """Athentication service class"""
@@ -9,16 +9,21 @@ class AuthService():
         self.user_log = FileManager('user_log.json')
         self.json_list = self.user_log.read()
         self.user_list = []
+        for user in self.json_list:
+            if user['type'] == 'Customer':
+                self.user_list.append(Customer.from_dict(user))
+            elif user['type'] == 'Admin':
+                self.user_list.append(Admin.from_dict(user))
         self.user_id = 1
 
-    def login(self, email: str, username: str, password: str, user_type: str):
+    def login(self, name_email: str, password: str, user_type: str):
         """Checks if credentials matches one in database and returns user type or return None if wrong credentials"""
         for user in self.json_list:
             if user['type'] == user_type:
-                if username == user['username'] or email == user['email']:
+                if name_email == user['username'] or name_email == user['email']:
                     if password == user['password']:
-                        return user.__class__.__name__
-        return None
+                        return True
+        return False
 
     def logout(self):
         """Returns user to login screen"""
@@ -39,8 +44,9 @@ class AuthService():
                 self.user_list.append(Customer(self.user_id, username, email, password))
             if user_type == 'admin':
                 self.user_list.append(Admin(self.user_id, username, email, password))
-            self.json_list.write({**user.to_dict(), 'type': user.__class__.__name__} for user in self.user_list)
+            self.user_log.write([{**user.to_dict(), 'type': user.__class__.__name__} for user in self.user_list])
+            self.json_list = self.user_log.read()
             self.user_id += 1
-            print(f'User {username} Succesfully registered')
+            print(f'\nUser {username} Succesfully registered')
         except ValueError as e:
             print(f'Error: {e}')

@@ -1,5 +1,5 @@
 from abc import ABC
-from validator import Validator
+from model.validator import Validator
 
 class User(ABC):
     """Base abstract class for users"""

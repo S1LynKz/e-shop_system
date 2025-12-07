@@ -12,15 +12,16 @@ class Order():
         """Convert the Order to a dictionary, including nested objects"""
         return {
             'order_id': self.order_id,
-            'customer': self.customer.username,
+            'customer': self.customer,
             'items': self.items,
             'total_price': self.total_price,
             'status': self.status
         }
     
-    def from_dict(self, data):
+    @staticmethod
+    def from_dict(data):
         return Order(
-            data['user_id'],
+            data['order_id'],
             data['customer'],
             data['items'],
             data['total_price'],

@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
-from validator import Validator
+from model.validator import Validator
 
 class Product(ABC):
     """Abstract base class for products"""
     def __init__(self, product_id: str, name: str, price: float, description: str, stock_quantity: int):
-        self._product_id = Validator.validate_string(product_id)
+        self._product_id = Validator.validate_positive_number(product_id)
         self._name = Validator.validate_string(name)
         self._price = Validator.validate_positive_number(price)
         self._description = Validator.validate_string(description)

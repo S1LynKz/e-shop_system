@@ -1,5 +1,5 @@
-from product import Product
-from validator import Validator
+from model.product import Product
+from model.validator import Validator
 
 class Clothing(Product):
     """Subclass of product"""
@@ -37,7 +37,7 @@ class Clothing(Product):
             'product_id': self.product_id,
             'name': self.name,
             'price': self.price,
-            "description": self.description,
-            "stock_quantity": self.stock_quantity,
-            "warranty_years": self.warranty_years
+            'description': self.description,
+            'stock_quantity': self.stock_quantity,
+            'size': self.size
         }

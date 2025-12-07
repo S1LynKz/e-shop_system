@@ -7,19 +7,19 @@ class FileManager():
         self.filename = filename
 
     def read(self) -> List:
-        if not os.path.exists(f'final_project/data/{self.filename}'):
+        if not os.path.exists(f'e_shop_system/data/{self.filename}'):
             return []
-        with open(f'final_project/data/{self.filename}', 'r') as file:
+        with open(f'e_shop_system/data/{self.filename}', 'r') as file:
             return json.load(file)
 
     def write(self, data: List[Dict]):
-        with open(f'final_project/data/{self.filename}', 'w') as file:
+        with open(f'e_shop_system/data/{self.filename}', 'w') as file:
             json.dump(data, file, indent = 4)
 
     def clear(self):
-        with open(f'final_project/data/{self.filename}', 'w') as file:
+        with open(f'e_shop_system/data/{self.filename}', 'w') as file:
             json.dump([], file, indent = 4)
 
     def delete(self):
-        if os.path.exists(f'final_project/data/{self.filename}'):
-            os.remove(f'final_project/data/{self.filename}')
+        if os.path.exists(f'e_shop_system/data/{self.filename}'):
+            os.remove(f'e_shop_system/data/{self.filename}')
